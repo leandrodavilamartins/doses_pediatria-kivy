@@ -1,0 +1,648 @@
+#File name : calcapp.kv 
+#:kivy 1.10.0
+
+
+<MyButton@Button>:
+	#background_color: (0, 0.6, 1, 0.65)
+	background_color: (1, 0, 0, 0.55)
+
+	bold: True 
+
+<Manager>:
+	Menu: 
+		id : menu 
+	Dipirona :
+		id : dipirona
+	Paracetamol: 
+		id : paracetamol 
+	Prednisolona: 
+		id : prednisolona
+	Dexclorferinamina : 
+		id : dexclorferinamina
+	Hidroxizina : 
+		id : hidroxizina 
+	Bromoprida : 
+		id : bromoprida 
+	SROP : 
+		id : srop 
+	SROT : 
+		id : srot 
+	Sulfato : 
+		id : sulfato 
+<Menu>: 
+	ScrollView:
+		BoxLayout:
+			id : box 
+			orientation: 'vertical'
+			padding: 10
+			spacing: 5
+			size_hint_y: (None)
+			height: 900
+			Label  : 
+				text: 'Calculadora de doses'
+				color : 0,0,0,1
+				bold: True 
+				size_hint_y: 3
+				font_size: 20
+			MyButton: 
+				text : 'Amoxicilina '
+			MyButton: 
+				text : 'Prednisolona'
+				on_release: root.manager.current = "prednisolona"
+			MyButton: 
+				text : 'Dexclorferinamina '
+				on_release : root.manager.current = "dexclorferinamina"
+			MyButton : 
+				text : 'Hidroxizina'
+				on_release : root.manager.current = 'hidroxizina'
+			MyButton : 
+				text : 'Buscopan'
+			MyButton :
+				text : 'Bromoprida'
+				on_release : root.manager.current = "bromoprida"
+			MyButton: 
+				text : 'Ondansetrona'
+			MyButton : 
+				text : 'Dipirona'
+				on_release : root.manager.current = "dipirona"
+			MyButton : 
+				text : 'SRO ( Não desidratado )'
+				on_release : root.manager.current = "srop"
+			MyButton: 
+				text : 'SRO ( Desidratado )'
+				on_release : root.manager.current = "srot"
+
+			MyButton : 
+				text : 'Sulfato Ferroso'
+				on_release : root.manager.current = "sulfato"
+			MyButton : 
+				text : 'Hidantal'
+			MyButton : 
+				text : 'Paracetamol'
+				on_release: root.manager.current = "paracetamol"
+<Dipirona>:
+	id : dipirona 
+	name : 'dipirona'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Dipirona'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : '500 mg/ml'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'drop.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_dipirona()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_dipirona
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' gotas de 6/6 horas .'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* maximo de 40 gotas por dose '
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<Paracetamol>:
+	id : paracetamol 
+	name : 'paracetamol'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Paracetamol'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : '200 mg/ml'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'drop.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_paracetamol()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_paracetamol
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' gotas de 6/6 horas .'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* maximo de 40 gotas por dose '
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<Prednisolona>:
+	id : prednisolona 
+	name : 'prednisolona'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Prednisolona'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : '3 mg/ml'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'syrup.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_prednisolona()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_prednisolona
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' ml as 8 horas da manha .'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* Dose pode ser dobrada s/n'
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<Dexclorferinamina>:
+	id : dexclorferinamina
+	name : 'dexclorferinamina'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Dexclorferinamina'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : '2 mg/ 5ml'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'syrup.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_dexclorferinamina()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_dexclorferinamina
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' ml de 8/8 horas.'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* Somente acima de 6 meses'
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<Hidroxizina>:
+	id : hidroxizina 
+	name : 'hidroxizina'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Hidroxizina'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : '10 mg/ 5ml'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'syrup.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_hidroxizina()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_hidroxizina
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' ml de 8/8 horas.'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* Somente acima de 6 meses'
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<Bromoprida>:
+	id : dipirona 
+	name : 'bromoprida'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Bromoprida'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : '4 mg/ml'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'drop.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_bromoprida()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_bromoprida
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' gotas de 8/8 horas .'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* somente se o paciente aceitar VO'
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<SROP>:
+	id : srop
+	name : 'srop'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Sais de Reidratação'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : 'Envelopes'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'soro.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_srop()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_srop 
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' ml apos episodio de vomito ou diarreia'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* Diluir 1 envelope em 1l de agua '
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<SROT>:
+	id : srot
+	name : 'srot'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Sais de Reidratação'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : 'Envelopes'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'soro.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_srot()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_srot 
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' ml de 15/15 min '
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* Repor em cerca de 4 horas '
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
+
+<Sulfato>:
+	id : sulfato 
+	name : 'sulfato'
+	BoxLayout:
+		orientation: 'vertical'
+		padding: 30
+		spacing: 20
+		Label:
+			text: 'Sulfato Ferroso'
+			size_hint_y: 0.3
+			bold: True 
+			color : 0,0,0,1
+			font_size: 20
+		Label: 
+			text : 'Para anemia ferropriva'
+			italic : True 
+			font_size: 10
+			color : 1,1,0,1
+			size_hint_y: 0.1
+			color : 0,0,0,1
+
+		Image:
+			source: 'syrup.png'
+			height: 256
+		BoxLayout:
+			padding : 10
+			Label : 
+				text :'   Peso :'
+				size_hint : (1, 0.3)
+				color : 0,0,0,1
+			TextInput:
+				id : textinput 
+				multiline: False
+				size_hint: (1, 0.3)
+				text: '0'
+				on_text : 
+					root.calc_sulfato()
+			Label:
+				text : 'kg'
+				size_hint: (0.7, 0.3)
+				italic: True 
+				color : 0,0,0,1
+		BoxLayout : 
+			size_hint_y: 0.8
+			orientation: 'vertical'
+			Label : 
+				id : label_dose_sulfato 
+				text : ''
+				size_hint_y: 0.3
+				bold : True 
+				italic: True 
+				color : 0,0,0,1
+			Label : 
+				text : ' ml 1x dia, por 90 dias'
+				size_hint_y: 0.3
+				color : 0,0,0,1
+			Label:
+				text : '* Dar no horário do suco'
+				size_hint_x: 1
+				font_size: 9 
+				italic: True 
+				color : 0,0,0,1
